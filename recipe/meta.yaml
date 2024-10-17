@@ -1,5 +1,5 @@
 {% set name = "ms-gsl" %}
-{% set version = "4.0.0" %}
+{% set version = "4.1.0" %}
 
 package:
   name: {{ name }}
@@ -8,10 +8,10 @@ package:
 source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/microsoft/GSL/archive/v{{ version }}.tar.gz
-  sha256: f0e32cb10654fea91ad56bde89170d78cfbf4363ee0b01d8f097de2ba49f6ce9
+  sha256: 14255cb38a415ba0cc4f696969562be7d0ed36bbaf13c5e4748870babf130c48
 
 build:
-  number: 2
+  number: 0
 
 requirements:
   build:
