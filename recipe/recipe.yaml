@@ -17,10 +17,8 @@ build:
     - if: win
       then: |
         cmake -GNinja %CMAKE_ARGS% -D GSL_INSTALL=ON -D GSL_TEST=OFF %SRC_DIR%
-        # cmake -S . -B build -G "Ninja" -DGSL_TEST=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX%
       else: |
         cmake -GNinja $CMAKE_ARGS -D GSL_INSTALL=ON $SRC_DIR
-        # cmake -S . -B build -G "Ninja" -DGSL_TEST=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PREFIX
     - cmake --build . --config Release
     - cmake --install . --config Release
 
