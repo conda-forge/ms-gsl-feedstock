@@ -1,0 +1,111 @@
+schema_version: 1
+
+context:
+  version: "4.2.0"
+
+package:
+  name: ms-gsl
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/microsoft/GSL/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: 2c717545a073649126cb99ebd493fa2ae23120077968795d2c69cbab821e4ac6
+
+build:
+  number: 1
+  script:
+    - if: win
+      then: |
+        cmake -GNinja %CMAKE_ARGS% -D GSL_INSTALL=ON -D GSL_TEST=OFF %SRC_DIR%
+        # cmake -S . -B build -G "Ninja" -DGSL_TEST=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX%
+      else: |
+        cmake -GNinja $CMAKE_ARGS -D GSL_INSTALL=ON $SRC_DIR
+        # cmake -S . -B build -G "Ninja" -DGSL_TEST=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PREFIX
+    - cmake --build . --config Release
+    - cmake --install . --config Release
+
+requirements:
+  build:
+    - ${{ compiler("cxx") }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - ninja
+  host:
+    - cmake
+
+tests:
+  - package_contents:
+      include:
+        - gsl/gsl
+      files:
+        - ${{ "Library/" if win }}share/cmake/Microsoft.GSL/Microsoft.GSLConfig.cmake
+        - ${{ "Library/" if win }}share/cmake/Microsoft.GSL/Microsoft.GSLConfigVersion.cmake
+  - script:
+      - mkdir -p test_build
+      - cd test_build
+      - if: win
+        then: |
+          echo #include ^<gsl/gsl^> > main.cpp
+          echo. >> main.cpp
+          echo int foo(gsl::not_null^<int *^> p) { return *p; } >> main.cpp
+          echo. >> main.cpp
+          echo int main() { int ret = 0; return foo(^&ret); } >> main.cpp
+          echo cmake_minimum_required(VERSION 3.26) > CMakeLists.txt
+          echo project(program-using-ms-gsl LANGUAGES CXX) >> CMakeLists.txt
+          echo add_executable(program main.cpp) >> CMakeLists.txt
+          echo find_package(Microsoft.GSL CONFIG REQUIRED) >> CMakeLists.txt
+          echo target_link_libraries(program PRIVATE Microsoft.GSL::GSL) >> CMakeLists.txt
+        else: |
+          cat > main.cpp << 'EOF'
+          #include <gsl/gsl>
+
+          int foo(gsl::not_null<int *> p)
+          {
+              return *p;
+          }
+
+          int main()
+          {
+              int ret = 0;
+              return foo(&ret);
+          }
+          EOF
+          cat > CMakeLists.txt << 'EOF'
+          cmake_minimum_required(VERSION 3.26)
+
+          project(program-using-ms-gsl LANGUAGES CXX)
+          add_executable(program main.cpp)
+
+          find_package(Microsoft.GSL CONFIG REQUIRED)
+          target_link_libraries(program PRIVATE Microsoft.GSL::GSL)
+          EOF
+      - cmake . -GNinja -DCMAKE_BUILD_TYPE=Release
+      - cmake --build . --config Release
+      - if: unix
+        then: ./program
+        else: program.exe
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - ${{ compiler("cxx") }}
+
+about:
+  homepage: https://github.com/microsoft/GSL
+  summary: Microsoft's implementation of the Guidelines Support Library
+  description: |
+    The Guidelines Support Library (GSL) contains functions and types that are suggested
+    for use by the C++ Core Guidelines maintained by the Standard C++ Foundation. This
+    repo contains Microsoft's implementation of GSL.
+
+    The entire implementation is provided inline in the headers. The implementation
+    generally assumes a platform that implements C++14 support.
+  license: MIT
+  license_file: LICENSE
+  documentation: https://github.com/microsoft/GSL
+  repository: https://github.com/microsoft/GSL
+
+extra:
+  recipe-maintainers:
+    - apmorton
+    - phreed

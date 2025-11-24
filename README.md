@@ -1,5 +1,5 @@
-About ms-gsl-feedstock
-======================
+About microsoft-gsl-feedstock
+=============================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ms-gsl-feedstock/blob/main/LICENSE.txt)
 
@@ -7,7 +7,18 @@ Home: https://github.com/microsoft/GSL
 
 Package license: MIT
 
-Summary: Guidelines Support Library
+Summary: Microsoft's implementation of the Guidelines Support Library
+
+Development: https://github.com/microsoft/GSL
+
+Documentation: https://github.com/microsoft/GSL
+
+The Guidelines Support Library (GSL) contains functions and types that are suggested
+for use by the C++ Core Guidelines maintained by the Standard C++ Foundation. This
+repo contains Microsoft's implementation of GSL.
+
+The entire implementation is provided inline in the headers. The implementation
+generally assumes a platform that implements C++14 support.
 
 Current build status
 ====================
@@ -81,53 +92,53 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-ms--gsl-green.svg)](https://anaconda.org/conda-forge/ms-gsl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ms-gsl.svg)](https://anaconda.org/conda-forge/ms-gsl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ms-gsl.svg)](https://anaconda.org/conda-forge/ms-gsl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ms-gsl.svg)](https://anaconda.org/conda-forge/ms-gsl) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-microsoft--gsl-green.svg)](https://anaconda.org/conda-forge/microsoft-gsl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/microsoft-gsl.svg)](https://anaconda.org/conda-forge/microsoft-gsl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/microsoft-gsl.svg)](https://anaconda.org/conda-forge/microsoft-gsl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/microsoft-gsl.svg)](https://anaconda.org/conda-forge/microsoft-gsl) |
 
-Installing ms-gsl
-=================
+Installing microsoft-gsl
+========================
 
-Installing `ms-gsl` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `microsoft-gsl` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `ms-gsl` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `microsoft-gsl` can be installed with `conda`:
 
 ```
-conda install ms-gsl
-```
-
-or with `mamba`:
-
-```
-mamba install ms-gsl
-```
-
-It is possible to list all of the versions of `ms-gsl` available on your platform with `conda`:
-
-```
-conda search ms-gsl --channel conda-forge
+conda install microsoft-gsl
 ```
 
 or with `mamba`:
 
 ```
-mamba search ms-gsl --channel conda-forge
+mamba install microsoft-gsl
+```
+
+It is possible to list all of the versions of `microsoft-gsl` available on your platform with `conda`:
+
+```
+conda search microsoft-gsl --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search microsoft-gsl --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search ms-gsl --channel conda-forge
+mamba repoquery search microsoft-gsl --channel conda-forge
 
-# List packages depending on `ms-gsl`:
-mamba repoquery whoneeds ms-gsl --channel conda-forge
+# List packages depending on `microsoft-gsl`:
+mamba repoquery whoneeds microsoft-gsl --channel conda-forge
 
-# List dependencies of `ms-gsl`:
-mamba repoquery depends ms-gsl --channel conda-forge
+# List dependencies of `microsoft-gsl`:
+mamba repoquery depends microsoft-gsl --channel conda-forge
 ```
 
 
@@ -152,12 +163,12 @@ it is possible to build and upload installable packages to the
 [conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -172,19 +183,19 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating ms-gsl-feedstock
-=========================
+Updating microsoft-gsl-feedstock
+================================
 
-If you would like to improve the ms-gsl recipe or build a new
+If you would like to improve the microsoft-gsl recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/ms-gsl-feedstock are
+Note that all branches in the conda-forge/microsoft-gsl-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
@@ -198,4 +209,5 @@ Feedstock Maintainers
 =====================
 
 * [@apmorton](https://github.com/apmorton/)
+* [@phreed](https://github.com/phreed/)
 
