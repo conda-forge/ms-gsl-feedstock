@@ -5,3 +5,6 @@ add_executable(program main.cpp)
 
 find_package(Microsoft.GSL CONFIG REQUIRED)
 target_link_libraries(program PRIVATE Microsoft.GSL::GSL)
+
+enable_testing()
+add_test(NAME gsl_test COMMAND program)

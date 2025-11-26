@@ -7,7 +7,18 @@ Home: https://github.com/microsoft/GSL
 
 Package license: MIT
 
-Summary: Guidelines Support Library
+Summary: Microsoft's implementation of the Guidelines Support Library
+
+Development: https://github.com/microsoft/GSL
+
+Documentation: https://github.com/microsoft/GSL
+
+The Guidelines Support Library (GSL) contains functions and types that are suggested
+for use by the C++ Core Guidelines maintained by the Standard C++ Foundation. This
+repo contains Microsoft's implementation of GSL.
+
+The entire implementation is provided inline in the headers. The implementation
+generally assumes a platform that implements C++14 support.
 
 Current build status
 ====================
@@ -152,12 +163,12 @@ it is possible to build and upload installable packages to the
 [conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -184,7 +195,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/ms-gsl-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
@@ -198,4 +209,5 @@ Feedstock Maintainers
 =====================
 
 * [@apmorton](https://github.com/apmorton/)
+* [@phreed](https://github.com/phreed/)
 
