@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "4.2.0"
+  version: "4.2.1"
 
 package:
   name: ms-gsl
@@ -9,10 +9,10 @@ package:
 
 source:
   - url: https://github.com/microsoft/GSL/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: 2c717545a073649126cb99ebd493fa2ae23120077968795d2c69cbab821e4ac6
+    sha256: d959f1cb8bbb9c94f033ae5db60eaf5f416be1baa744493c32585adca066fe1f
 
 build:
-  number: 1
+  number: 0
   script:
     - if: win
       then: |
