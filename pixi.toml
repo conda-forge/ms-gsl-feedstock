@@ -5,7 +5,7 @@
 
 [workspace]
 name = "ms-gsl-feedstock"
-version = "3.53.3"  # conda-smithy version used to generate this file
+version = "3.61.2"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/ms-gsl-feedstock"
 authors = ["@conda-forge/ms-gsl"]
 channels = ["conda-forge"]
